@@ -1,0 +1,76 @@
+{
+  "ingredients": [
+    { "id": 1, "name": "Mussarela", "unit": "g", "stock": 5000, "minWarning": 500 },
+    { "id": 2, "name": "Calabresa", "unit": "g", "stock": 2000, "minWarning": 300 },
+    { "id": 3, "name": "Molho de tomate", "unit": "ml", "stock": 3000, "minWarning": 400 }
+  ],
+
+  "products": [
+    {
+      "id": 1,
+      "name": "Pizza Mussarela",
+      "type": "PIZZA",
+      "price": 45,
+      "active": true,
+      "description": "Pizza clássica com queijo mussarela",
+      "ingredients": [
+        { "ingredientId": 1, "quantity": 100 },
+        { "ingredientId": 3, "quantity": 50 }
+      ],
+      "imageUrl": "/img/mussarela.png"
+    },
+    {
+      "id": 2,
+      "name": "Pizza Calabresa",
+      "type": "PIZZA",
+      "price": 50,
+      "active": true,
+      "description": "Pizza de calabresa com cebola",
+      "ingredients": [
+        { "ingredientId": 2, "quantity": 120 },
+        { "ingredientId": 3, "quantity": 50 }
+      ],
+      "imageUrl": "/img/calabresa.png"
+    },
+    {
+      "id": 3,
+      "name": "Coca-Cola 2L",
+      "type": "BEVERAGE",
+      "price": 12,
+      "active": true,
+      "ingredients": [],
+      "imageUrl": "/img/coca2l.png"
+    }
+  ],
+
+  "customers": [
+    { "id": 1, "name": "João Silva", "phone": "11988887777", "address": "Rua A, 123" },
+    { "id": 2, "name": "Maria Souza", "phone": "11999998888", "address": "Rua B, 456" }
+  ],
+
+  "orders": [
+    {
+      "id": 1,
+      "customerId": 1,
+      "storeId": 1,
+      "items": [
+        { "productId": 1, "qty": 2 },
+        { "productId": 3, "qty": 1 }
+      ],
+      "total": 102,
+      "status": "PENDING",
+      "paymentMethod": "PIX",
+      "paymentStatus": "PENDING",
+      "createdAt": "2025-10-11T22:15:00Z"
+    }
+  ],
+
+  "store": {
+    "id": 1,
+    "name": "Pizzaria da Esquina",
+    "timezone": "America/Sao_Paulo",
+    "openTime": "18:00",
+    "closeTime": "23:00",
+    "openDays": [0,1,2,3,4,5,6]
+  }
+}
