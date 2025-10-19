@@ -7,19 +7,21 @@ export function getPedidos(req: Request, res: Response) {
 }
 
 export function postPedido(req: Request, res: Response) {
-  const pedido = criarPedido(req.body);
-  if (!pedido) return res.status(400).json({ erro: 'Pedido inválido ou pizzaria fechada' });
+  const resultado = criarPedido(req.body);
+  if (resultado.erro) {
+    return res.status(400).json({ erro: resultado.erro });
+  }
 
-  io.emit('pedido_novo', { pedidoId: pedido.id, clienteId: pedido.clienteId });
-  res.status(201).json(pedido);
+  io.emit('pedido_novo', { pedidoId: resultado.pedido!.id, clienteId: resultado.pedido!.clienteId });
+  res.status(201).json(resultado.pedido);
 }
 
 export function patchPedidoStatus(req: Request, res: Response) {
   const id = Number(req.params.id);
-  const { status } = req.body;
-  const atualizado = atualizarStatusPedido(id, status);
+  const { status, motivo } = req.body;
+  const atualizado = atualizarStatusPedido(id, status, motivo);
   if (!atualizado) return res.status(404).json({ erro: 'Pedido não encontrado' });
 
-  io.emit('pedido_status', { pedidoId: id, status });
+  io.emit('pedido_status', { pedidoId: id, status, motivo: atualizado.motivoCancelamento });
   res.json(atualizado);
 }

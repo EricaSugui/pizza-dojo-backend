@@ -2,14 +2,17 @@ import { ingredientes } from '../mocks/data';
 import { Ingrediente } from '../types';
 import { atualizarDisponibilidadeProdutos } from './produtosService';
 
+let ultimoId = ingredientes.reduce((maxId, item) => Math.max(item.id, maxId), 0);
+const gerarProximoId = () => ++ultimoId;
+
 export function listarIngredientes(): Ingrediente[] {
   return ingredientes;
 }
 
 export function criarIngrediente(data: Omit<Ingrediente, 'id'>): Ingrediente {
   const novo: Ingrediente = {
+    id: gerarProximoId(),
     ...data,
-    id: Date.now()
   };
   ingredientes.push(novo);
   atualizarDisponibilidadeProdutos();
