@@ -5,6 +5,7 @@ import http from 'http';
 import { Server as SocketIOServer, Socket } from 'socket.io';
 import adminRoutes from './routes/admin'; 
 import clienteRoutes from './routes/cliente';
+import { atualizarDisponibilidadeProdutos } from './services/produtosService';
 
 const app = express();
 const server = http.createServer(app);
@@ -37,6 +38,9 @@ io.on('connection', (socket: Socket) => {
     console.log('Cliente desconectado:', socket.id);
   });
 });
+
+// Atualiza a disponibilidade dos produtos com base nos ingredientes ao iniciar
+atualizarDisponibilidadeProdutos();
 
 // Inicia o servidor
 const PORT = process.env.PORT || 3000;
