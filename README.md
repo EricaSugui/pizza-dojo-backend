@@ -1,3 +1,6 @@
 ## BACKEND
 
 WIP
+
+### SonarQube
+### Fossa
