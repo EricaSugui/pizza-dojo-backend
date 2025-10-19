@@ -17,15 +17,17 @@ export interface PedidoItem {
   quantidade: number;
 }
 
-export type PedidoStatus = 'pendente' | 'aceito' | 'em_preparo' | 'finalizado' | 'cancelado';
+export type PedidoStatus = 'pendente' | 'aceito' | 'em_preparo' | 'pronto_para_retirada' | 'em_rota_de_entrega' | 'finalizado' | 'cancelado';
 
 export interface Pedido {
   id: number;
-  clienteId: number;
+  clienteId: number; // O nome da propriedade é clienteId
   itens: Array<{ produtoId: number; quantidade: number }>;
-  status: 'pendente' | 'aceito' | 'em_preparo' | 'finalizado' | 'cancelado';
+  total: number;
+  status: PedidoStatus;
   formaPagamento: 'pix' | 'retirada';
   horario: string;
+  motivoCancelamento?: string;
 }
 
 export interface Cliente {
@@ -38,4 +40,14 @@ export interface ConfigPizzaria {
   aberta: boolean;
   horarioAbertura: string;
   horarioFechamento: string;
+}
+
+export interface TransacaoCaixa {
+  id: number;
+  pedidoId?: number;
+  descricao: string;
+  valor: number;
+  tipo: 'entrada' | 'saida';
+  metodo: 'pix' | 'dinheiro' | 'debito' | 'retirada';
+  data: string;
 }
