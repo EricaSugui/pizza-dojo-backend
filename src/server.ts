@@ -1,7 +1,7 @@
 import express from 'express';
 // Tipos são importados separadamente
 import type { Request, Response } from 'express';
-import http from 'http';
+import http from 'node:http';
 import { Server as SocketIOServer, Socket } from 'socket.io';
 import adminRoutes from './routes/admin'; 
 import clienteRoutes from './routes/cliente';
