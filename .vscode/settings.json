@@ -1,0 +1,6 @@
+{
+    "sonarlint.connectedMode.project": {
+        "connectionId": "ericasugui",
+        "projectKey": "EricaSugui_pizza-dojo-backend"
+    }
+}
